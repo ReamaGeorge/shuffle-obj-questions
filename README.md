@@ -2,12 +2,12 @@
 
 ## Overview
 
-As an educator, one of the consistent challenges faced is the need to reorganize objective questions to generate various question formats, all aimed at deterring cheating during examinations. The Question Shuffler software is specifically designed to address this challenge by shuffling objective questions into four distinct question types, along with shuffling their respective options.
+As an educator, one of the consistent challenges faced is the need to reorganize objective questions to generate various question formats, all aimed at deterring cheating during examinations. The Question Shuffler is a web-based program specifically designed to address this challenge by shuffling objective questions into four distinct question types, along with shuffling their respective options.
 
 ## Features
 
 - **Question Shuffling**: The software allows educators to input a set of objective questions and shuffles them into four different question types, enhancing the variety of questions in an exam.
-- **Option Shuffling**: Along with shuffling questions, the software shuffles the options within each question, further discouraging cheating.
+- **Option Shuffling**: Along with shuffling questions, it shuffles the options within each question, further discouraging cheating.
 - **Scientific Expression Support**: The software supports the insertion of scientific expressions, symbols, and formulas into questions or options, facilitating the creation of diverse question formats.
 
 ## Usage
