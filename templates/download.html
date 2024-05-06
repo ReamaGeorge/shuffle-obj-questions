@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Generated Documents</title>
+    <style>
+        body {
+            background-color: rgb(10, 8, 164);
+            color: rgb(97, 162, 197);
+            text-align: center;
+            font-size: 18px; /* One step bigger */
+            font-weight: bold; /* Make the font bolder */
+        }
+
+        h1 {
+            font-size: 28px; /* Adjust the font size as needed */
+            text-align: center; /* Center the major heading */
+            margin-bottom: 20px; /* Add margin below the major heading */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default bullet points */
+            padding: 0; /* Remove default padding */
+        }
+
+        li {
+            margin-bottom: 10px; /* Add margin between download links */
+        }
+
+        a {
+            color: rgb(178, 216, 239); /* Set a shade of light blue for links */
+            text-decoration: none; /* Remove underline from links */
+            font-size: 16px; /* Adjust font size */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline links on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Download Generated Documents</h1>
+    <ul>
+        {% for document in documents %}
+        <li><a href="{{ document }}">{{ document }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
