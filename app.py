@@ -1,20 +1,21 @@
-# ======================================================
-# first version that worked"""
-# try creating tha path to your download  folder
-
 from flask import Flask, render_template, request, send_file
 from docx import Document
 import random
+import os
 
 app = Flask(__name__)
+
+# Define the documents list globally
+documents = []
 
 @app.route('/')
 def index():
     return render_template('index.html', number_of_questions=5)  # Change 5 to whatever default value you want
 
-
 @app.route('/generate', methods=['POST'])
 def generate():
+    global documents  # Access the global documents list
+
     number_of_questions = int(request.form['number_of_questions'])
 
     questions = []
@@ -36,7 +37,7 @@ def generate():
         shuffled_questions, shuffled_options = shuffle_questions(questions.copy(), options.copy())
         versions.append((shuffled_questions, shuffled_options))
 
-    documents = []
+    documents = []  # Clear the documents list
     for i, (questions, options) in enumerate(versions, start=1):
         doc = Document()
         for j, question in enumerate(questions, start=1):
@@ -46,13 +47,19 @@ def generate():
                 doc.add_paragraph(f"   {labels[k]} {options[question][key]}")
             doc.add_paragraph()
         file_name = f'TYPE {i}.docx'
-        # file_path = r'C:Users/user/Download/'
-        
-        doc.save(file_name)
-        # doc.save(file_path + file_name)
-        documents.append(file_name)
+        file_path = os.path.join(app.config['DOWNLOAD_FOLDER'], file_name)
+        doc.save(file_path)
+        documents.append(file_path)
 
-    return render_template('download.html', documents=documents)
+    return render_template('download.html', documents=documents)  # Pass the list of document paths to the template
+
+@app.route('/download/<int:index>')
+def download(index):
+    file_path = documents[index - 1]
+    return send_file(
+        file_path, 
+        as_attachment=True
+    )
 
 def shuffle_questions(questions, options):
     random.shuffle(questions)
@@ -64,4 +71,6 @@ def shuffle_questions(questions, options):
     return questions, options
 
 if __name__ == "__main__":
+    # Set the download folder in the Flask app config
+    app.config['DOWNLOAD_FOLDER'] = os.path.join(os.path.expanduser("~"), "Downloads")
     app.run(debug=True)
