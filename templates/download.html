@@ -3,48 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Generated Documents</title>
-    <style>
-        body {
-            background-color: rgb(10, 8, 164);
-            color: rgb(97, 162, 197);
-            text-align: center;
-            font-size: 18px; /* One step bigger */
-            font-weight: bold; /* Make the font bolder */
-        }
-
-        h1 {
-            font-size: 28px; /* Adjust the font size as needed */
-            text-align: center; /* Center the major heading */
-            margin-bottom: 20px; /* Add margin below the major heading */
-        }
-
-        ul {
-            list-style-type: none; /* Remove default bullet points */
-            padding: 0; /* Remove default padding */
-        }
-
-        li {
-            margin-bottom: 10px; /* Add margin between download links */
-        }
-
-        a {
-            color: rgb(178, 216, 239); /* Set a shade of light blue for links */
-            text-decoration: none; /* Remove underline from links */
-            font-size: 16px; /* Adjust font size */
-        }
-
-        a:hover {
-            text-decoration: underline; /* Underline links on hover */
-        }
-    </style>
+    <title>Generated Documents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Download Generated Documents</h1>
-    <ul>
-        {% for document in documents %}
-        <li><a href="{{ document }}">{{ document }}</a></li>
-        {% endfor %}
-    </ul>
+<body class="bg-gray-100 text-gray-800">
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-600">Your Documents Are Ready!</h1>
+            <p class="text-gray-600 mt-2">Click on the links below to download your files.</p>
+        </header>
+
+        <div class="bg-white shadow-md rounded-lg p-6 w-11/12 max-w-md">
+            <ul class="space-y-4">
+                {% for link in download_links %}
+                <li>
+                    <a
+                        href="{{ link }}"
+                        class="flex items-center justify-between p-3 rounded-md bg-blue-100 hover:bg-blue-200 transition shadow-sm">
+                        <span class="font-medium text-blue-700">TYPE {{ loop.index }}</span>
+                        <span class="text-blue-600 font-bold text-lg">&rarr;</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
