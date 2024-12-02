@@ -99,6 +99,5 @@ def shuffle_questions(questions, options):
     return questions, options
 
 if __name__ == "__main__":
-    # Allow dynamic port assignment
-    port = int(os.environ.get("PORT", 5001))  # Default to 5001 if PORT environment variable is not set
-    app.run(debug=True, port=port)
+    app.run(debug=True)
+
